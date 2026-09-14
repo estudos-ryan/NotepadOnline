@@ -29,7 +29,7 @@ O projeto foi desenvolvido utilizando:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/ryancunhadev/NotepadOnline.git
+git clone https://github.com/estudos-ryan/NotepadOnline.git
 ```
 
 ### 2. Acesse o diretório
