@@ -1,6 +1,6 @@
 # NotepadOnline
 
-Um bloco de notas online simples e intuitivo para criar, editar e organizar anotações diretamente pelo navegador.
+Um bloco de notas online simples e para criar, editar e compartilhar anotações diretamente pelo navegador.
 
 ## Demonstração
 
@@ -20,19 +20,22 @@ O projeto foi desenvolvido utilizando:
 - Visualizar anotações
 - Interface simples e responsiva
 - Comunicação entre frontend e backend
+- Compartilhamento de anotações
+- Senha na URL
+- Salvamento no banco de dados
 
 ## Como executar o projeto
 
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/ryancunhha/NotepadOnline.git
+git clone https://github.com/ryancunhadev/NotepadOnline.git
 ```
 
 ### 2. Acesse o diretório
 
 ```bash
-cd NotepadOnline
+cd notepadOnline
 ```
 
 ### 3. Instale as dependências

@@ -1,14 +1,19 @@
 import { createClient } from "redis";
-import dotenv from "dotenv";
 
-dotenv.config()
+const client = createClient({
+  url: process.env.REDIS_URL,
+});
 
-const redis = createClient({
-    url: process.env.REDIS_URL
-})
+client.on("error", (err) => console.error("Erro no Redis:", err));
 
-redis.on("erro", (err) => console.log("Erro no redis:", err))
+const connectionPromise = client.connect().catch((err) => {
+  console.error("Erro ao conectar no Redis:", err);
+});
 
-await redis.connect()
+export default async function pegarRedis() {
+  if (!client.isOpen) {
+    await connectionPromise;
+  }
 
-export default redis
+  return client;
+}

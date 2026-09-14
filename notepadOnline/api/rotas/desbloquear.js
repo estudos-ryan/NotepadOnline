@@ -1,4 +1,4 @@
-import redis from "../db/db.js";
+import pegarRedis from "../db/db.js";
 import { verificarSenha } from "../utils/bcryt.js";
 
 export default async function Desbloquear(req, res) {
@@ -8,11 +8,13 @@ export default async function Desbloquear(req, res) {
     const slugLimpo = slug.toLowerCase().trim().replace(/[^a-z0-9-]/g, "");
 
     try {
-        const db = await redis.get(slugLimpo);
+        const redis = await pegarRedis();
 
-        if (!db) return res.status(404).json({ error: "Nota não encontrada" });
+        const data = await redis.hGetAll(slugLimpo);
 
-        const data = JSON.parse(db);
+        if (!data || Object.keys(data).length === 0) {
+            return res.status(404).json({ error: "Nota não encontrada" });
+        }
 
         const senhaValida = await verificarSenha(senha, data.senha);
 
@@ -20,9 +22,7 @@ export default async function Desbloquear(req, res) {
             return res.status(401).json({ error: "Senha incorreta" });
         }
 
-        return res.status(200).json({
-            conteudo: data.conteudo
-        });
+        return res.status(200).json({ conteudo: data.conteudo });
     } catch (error) {
         console.error("Erro ao desbloquear:", error);
         return res.status(500).json({ error: "Erro interno do servidor" });

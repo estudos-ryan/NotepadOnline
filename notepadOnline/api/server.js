@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import rateLimite from "express-rate-limit";
 
-import PegarNotas from "./rotas/get.js";
+import PegarNotas from "./rotas/pegar.js";
 import SavarNotas from "./rotas/save.js";
 import Desbloquear from "./rotas/desbloquear.js";
 
